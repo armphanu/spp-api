@@ -1,7 +1,6 @@
-# Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
 v: 0
 micros:
-  - name: SPP-BACK
-    src: ./
+  - name: fastapi-deta
+    src: .
     engine: python3.9
-    primary: true
+    run: uvicorn main:app

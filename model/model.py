@@ -122,45 +122,45 @@ def predict_pipeline(created_time, message_tags, msg, pl, pg):
     df = pd.DataFrame(data)
 
     # month
-    month = np.load('/app/app/model/old-data/created_month_norm.npy')
+    month = np.load('./model/old-data/created_month_norm.npy')
     month = np.insert(month, 0, pd.to_datetime(df['created_time']).apply(getMonth)[0])
     df_nor = pd.DataFrame(month, columns = ['created_month'])
     monthNM = preprocessing.normalize([df_nor['created_month']])[0][0]
 
 
     # date
-    day = np.load('/app/app/model/old-data/created_day_norm.npy')
+    day = np.load('./model/old-data/created_day_norm.npy')
     day = np.insert(day, 0, pd.to_datetime(df['created_time']).apply(getDate)[0])
     df_nor = pd.DataFrame(day, columns = ['created_date'])
     dayNM = preprocessing.normalize([df_nor['created_date']])[0][0]
 
     #hour
-    hour = np.load('/app/app/model/old-data/created_hour_norm.npy')
+    hour = np.load('./model/old-data/created_hour_norm.npy')
     hour = np.insert(hour, 0, pd.to_datetime(df['created_time']).apply(getHour)[0])
     df_nor = pd.DataFrame(hour, columns = ['created_hour'])
     hourNM = (preprocessing.normalize([df_nor['created_hour']])[0][0])
 
 
     #tag
-    tag = np.load('/app/app/model/old-data/post_messagetag_count_bin_norm.npy')
+    tag = np.load('./model/old-data/post_messagetag_count_bin_norm.npy')
     tag = np.insert(tag, 0, df['message_tags'].apply(getMessageTagLength)[0])
     df_nor = pd.DataFrame(tag, columns = ['message_tags'])
     tagNM = (preprocessing.normalize([df_nor['message_tags']])[0][0])
 
     #message
-    message = np.load('/app/app/model/old-data/post_message_count_bin_norm.npy')
+    message = np.load('./model/old-data/post_message_count_bin_norm.npy')
     message = np.insert(message, 0, df['message'].apply(getMessageLength)[0])
     df_nor = pd.DataFrame(message, columns = ['message'])
     messageNM = (preprocessing.normalize([df_nor['message']])[0][0])
 
     #like_page
-    pageLike = np.load('/app/app/model/old-data/page_likes_count_bin_norm.npy')
+    pageLike = np.load('./model/old-data/page_likes_count_bin_norm.npy')
     pageLike = np.insert(pageLike, 0, df['page_like'][0])
     df_nor = pd.DataFrame(pageLike, columns = ['page_like'])
     pgNM = (preprocessing.normalize([df_nor['page_like']])[0][0])
 
     #follow_page
-    pageFollow = np.load('/app/app/model/old-data/page_followers_count_bin_norm.npy')
+    pageFollow = np.load('./model/old-data/page_followers_count_bin_norm.npy')
     pageFollow = np.insert(pageFollow, 0, df['page_follow'][0])
     df_nor = pd.DataFrame(pageFollow, columns = ['page_follow'])
     pfNM = (preprocessing.normalize([df_nor['page_follow']])[0][0])
