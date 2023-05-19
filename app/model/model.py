@@ -1,19 +1,14 @@
 import pickle
-import re
 from pathlib import Path
 
 
 ####import####
 import datetime
 import pandas as pd
-import pytz, dateutil.parser
-import json
 import numpy as np
 import ast
-import re
-import string
 import ast
-from pythainlp import sent_tokenize, word_tokenize
+from pythainlp import word_tokenize
 from sklearn import preprocessing
 __version__ = "0.1.0"
 
@@ -30,37 +25,6 @@ def conToDate(date_str):
   date_2 = datetime.strptime(str(date_str).split()[0], '%Y-%m-%d').date()
   delta = date_1 - date_2
   return delta.days
-
-#clean_text
-def w_tokenize(data):
-  if pd.isna(data):
-    return ('')
-  start = ' '.join(data)
-
-  #remove punctuation
-  remove_punc = re.sub(r'[' + string.punctuation+']', ' ',start)
-
-  #remove emoji
-  regrex_pattern = re.compile(pattern = "["u"\U0001F600-\U0001F64F"
-                  u"\U0001F300-\U0001F5FF"
-                  u"\U0001F680-\U0001F6FF"
-                  u"\U0001F1E0-\U0001F1FF"
-                  "]", flags = re.UNICODE)
-  
-  regrex_emoji = regrex_pattern.sub(r'', remove_punc)
-
-  remove_number = ''.join([i for i in regrex_emoji if not i.isnumeric()])
-
-  remove_spaces = re.sub("\s+", "", remove_number)
-
-  # return word_tokenize(remove_spaces.strip())
-  return remove_spaces.strip()
-
-def embed_text(input):
-  module_url = 'https://tfhub.dev/google/universal-sentence-encoder-multilingual/3' 
-  model = hub.load(module_url)
-  x = model(input)
-  return x.numpy()[0]
 
 def getDate(dateStr, option='normal'):
   date = dateStr.tz_convert('Asia/Bangkok')
@@ -107,6 +71,7 @@ def getMessageTagLength(tagStr, option=""):
 def getMessageLength(message):
   tokenMsg = tokenText(message)
   return len(tokenMsg)
+
 
 
 def predict_pipeline(created_time, message_tags, msg, pl, pg):

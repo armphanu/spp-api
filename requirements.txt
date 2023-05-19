@@ -1,12 +1,8 @@
 fastapi
 uvicorn[standard]
-tensorflow-text
 pythainlp
 epitran
-sklearn_crfsuite
 pandas
-attacut
-plotly
 xgboost==1.7.5
 scikit-learn
 numpy
