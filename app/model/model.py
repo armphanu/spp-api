@@ -236,8 +236,8 @@ def predict_pipeline(created_time, message_tags, msg, pl, pg):
         pred13 = class_model.predict(cku13g11)
         pred14 = class_model.predict(cku14g11)
 
-        res = {"score": pred[0]}
-        res["dataList"] = [pred1[0], pred2[0], pred3[0], pred4[0], pred5[0], pred6[0], pred7[0], pred8[0], pred9[0], pred10[0], pred11[0], pred12[0], pred13[0], pred14[0]]
+        res = {"score": sum(pred[0])}
+        res["dataList"] = [sum(pred1[0]), sum(pred2[0]), sum(pred3[0]), sum(pred4[0]), sum(pred5[0]), sum(pred6[0]), sum(pred7[0]), sum(pred8[0]), sum(pred9[0]), sum(pred10[0]), sum(pred11[0]), sum(pred12[0]), sum(pred13[0]), sum(pred14[0])]
       if type == 'regression':
         with open(f"{BASE_DIR}/ru1.pkl", "rb") as f:
            ru1 = pickle.load(f)
