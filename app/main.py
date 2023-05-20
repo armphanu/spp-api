@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from app.model.model import predict_pipeline
+from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 class User(BaseModel):
@@ -13,14 +14,25 @@ class SPP(BaseModel):
     msg : str
     pl : int
     pg : int
+    type: str
 
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
 
 
-@app.post("/predict/", response_model=str)
+@app.post("/predict/")
 async def predict(spp: SPP):
-    result = predict_pipeline(spp.created_time, spp.message_tags, spp.msg, spp.pl, spp.pg)
+    result = predict_pipeline(spp.created_time, spp.message_tags, spp.msg, spp.pl, spp.pg, spp.type)
     return str(result)
 
