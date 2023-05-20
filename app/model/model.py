@@ -80,7 +80,7 @@ def getMessageLength(message):
 
 
 
-def predict_pipeline(created_time, message_tags, msg, pl, pg):
+def predict_pipeline(created_time, message_tags, msg, pl, pg, type):
     data = {
       "created_time": [created_time],
       "message_tags": [message_tags],
