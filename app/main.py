@@ -17,7 +17,20 @@ class SPP(BaseModel):
     type: str
 
 
-origins = ["*"]
+# origins = ["*"]
+
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=origins,
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+
+origins = [
+    "http://localhost",
+    "http://localhost:8080",  # Replace with your frontend URL
+]
 
 app.add_middleware(
     CORSMiddleware,
@@ -26,6 +39,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
