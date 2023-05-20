@@ -13,14 +13,15 @@ class SPP(BaseModel):
     msg : str
     pl : int
     pg : int
+    type: str
 
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
 
 
-@app.post("/predict/", response_model=str)
+@app.post("/predict/")
 async def predict(spp: SPP):
-    result = predict_pipeline(spp.created_time, spp.message_tags, spp.msg, spp.pl, spp.pg)
+    result = predict_pipeline(spp.created_time, spp.message_tags, spp.msg, spp.pl, spp.pg, spp.type)
     return str(result)
 

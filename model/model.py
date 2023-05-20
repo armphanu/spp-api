@@ -17,6 +17,13 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent
 
 with open(f"{BASE_DIR}/binary.pkl", "rb") as f:
     model = pickle.load(f)
+with open(f"{BASE_DIR}/cku24g11.pkl", "rb") as f:
+    ranking_model = pickle.load(f)
+with open(f"{BASE_DIR}/cu29g16.pkl", "rb") as f:
+    class_model = pickle.load(f)
+with open(f"{BASE_DIR}/ru12.pkl", "rb") as f:
+    regress_model = pickle.load(f)
+
 
 
 def conToDate(date_str):
@@ -73,7 +80,7 @@ def getMessageLength(message):
   return len(tokenMsg)
 
 
-def predict_pipeline(created_time, message_tags, msg, pl, pg):
+def predict_pipeline(created_time, message_tags, msg, pl, pg, type):
     data = {
       "created_time": [created_time],
       "message_tags": [message_tags],
@@ -132,62 +139,17 @@ def predict_pipeline(created_time, message_tags, msg, pl, pg):
 
     df = pd.DataFrame(my_array, columns = ['nima','iipa','post_message_count_bin', 'page_followers_count_bin', 'page_likes_count_bin', 'post_messagetag_count_bin', 'created_day', 'created_hour', 'created_month'])
     pred = model.predict(df)
-    return pred[0]
-
-# print(predict_pipeline('2022-09-05T11:00:04+0000', "['#GlicoIceTH', '#GiantConeCrown', '#foodbymay', '#icecream']", 'test helloword t1112134 heeellloooo its me', 1000000, 222223121313133))
-
-
-# data = {
-#   "created_time": ['2022-09-05T11:00:04+0000'],
-#   "message_tags": ["['#GlicoIceTH', '#GiantConeCrown', '#foodbymay', '#icecream']"],
-#   "message": ['ครั้งแรกของมอคค่าในรูปแบบโคน!!! /n ใหม่ ไจแอนท์ โคน คราวน์ “มอคค่า อัลมอนด์” 🍦☕️🍫🥜🔥 เกินต้านให้ทิสุดในใจตอนนี้ ไอศกรีมเป็นรสมอคค่าแบบพรีเมียมแทรกช็อกโกแลตชิพกรุบ ท็อปด้วยดาร์กช็อกโกแลตดิสก์ และอัลมอนด์แท้จากอเมริกาใส่มาแบบแน่นๆบอกเลยว่าเคี้ยวกรุบกรอบเพลินม๊วกกก 🥜😋 และฟินให้สุดแบบฉุดไม่อยู่ด้วยดาร์กช็อกโกแลตแท้ที่ปลายโคนวานิลลากรอบ โคตรดีย์ สุดทุกคำสุดทุกโคน 🍫❤️ ดีต่อใจไม่ไหว!! ซื้อตุนเก็บไว้ในตู้เย็น เวลาไหนก็ฟินได้ 😍 อร่อย…ตื่นต๊าชชช ☕️🤩 บ่ายไหนก็ไม่มีน็อค กับความหอมหวาน ความเข้มข้นของไอศกรีมมอคค่า ลองเล๊ยยยย 💰ราคา 35 บาท/แท่ง📍พิกัด : หาซื้อมาได้แล้ววันนี้ที่  7-Eleven'],
-#   "page_like": 1000000,
-#   "page_follow": 2022222
-
-# }
-
-# df = pd.DataFrame(data)
-
-# # month
-# month = np.load('./old-data/created_month_norm.npy')
-# month = np.insert(month, 0, pd.to_datetime(df['created_time']).apply(getMonth)[0])
-# df_nor = pd.DataFrame(month, columns = ['created_month'])
-# monthNM = preprocessing.normalize([df_nor['created_month']])[0][0]
-
-
-# # date
-# day = np.load('./old-data/created_day_norm.npy')
-# day = np.insert(day, 0, pd.to_datetime(df['created_time']).apply(getDate)[0])
-# df_nor = pd.DataFrame(day, columns = ['created_date'])
-# dayNM = preprocessing.normalize([df_nor['created_date']])[0][0]
-
-# #hour
-# hour = np.load('./old-data/created_hour_norm.npy')
-# hour = np.insert(hour, 0, pd.to_datetime(df['created_time']).apply(getHour)[0])
-# df_nor = pd.DataFrame(hour, columns = ['created_hour'])
-# hourNM = (preprocessing.normalize([df_nor['created_hour']])[0][0])
-
-
-# #tag
-# tag = np.load('./old-data/post_messagetag_count_bin_norm.npy')
-# tag = np.insert(tag, 0, df['message_tags'].apply(getMessageTagLength)[0])
-# df_nor = pd.DataFrame(tag, columns = ['message_tags'])
-# tagNM = (preprocessing.normalize([df_nor['message_tags']])[0][0])
-
-# #message
-# message = np.load('./old-data/post_message_count_bin_norm.npy')
-# message = np.insert(message, 0, df['message'].apply(getMessageLength)[0])
-# df_nor = pd.DataFrame(message, columns = ['message'])
-# messageNM = (preprocessing.normalize([df_nor['message']])[0][0])
-
-# #like_page
-# pageLike = np.load('./old-data/page_likes_count_bin_norm.npy')
-# pageLike = np.insert(pageLike, 0, df['page_like'][0])
-# df_nor = pd.DataFrame(pageLike, columns = ['page_like'])
-# pgNM = (preprocessing.normalize([df_nor['page_like']])[0][0])
-
-# #follow_page
-# pageFollow = np.load('./old-data/page_followers_count_bin_norm.npy')
-# pageFollow = np.insert(pageFollow, 0, df['page_follow'][0])
-# df_nor = pd.DataFrame(pageFollow, columns = ['page_follow'])
-# pfNM = (preprocessing.normalize([df_nor['page_follow']])[0][0])
+    res = ""
+    if pred[0] == '0':
+      res = {"message": "คอนเทนต์ของคุณอาจจะมีค่าความนิยมไม่เกิน 50"}
+    else:
+      if(type == 'classification'):
+        pred = class_model.predict(df)
+        res = {"score": pred[0]}
+      if type == 'ranking':
+        pred = ranking_model.predict(df)
+        res = {"score": pred[0]}
+      if type == 'regression':
+        pred = regress_model.predict(df)
+        res = {"score": (2**pred[0])-1 }
+    return res
