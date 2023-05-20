@@ -143,33 +143,33 @@ def predict_pipeline(created_time, message_tags, msg, pl, pg):
       res = {"message": "คอนเทนต์ของคุณอาจจะมีค่าความนิยมไม่เกิน 50"}
     else:
       if(type == 'classification'):
-        with open(f"{BASE_DIR}/cu1g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/classification-model/cu1g11.pkl", "rb") as f:
             cu1g11 = pickle.load(f)
-        with open(f"{BASE_DIR}/cu2g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/classification-model/cu2g11.pkl", "rb") as f:
             cu2g11 = pickle.load(f)
-        with open(f"{BASE_DIR}/cu3g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/classification-model/cu3g11.pkl", "rb") as f:
             cu3g11 = pickle.load(f)
-        with open(f"{BASE_DIR}/cu4g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/classification-model/cu4g11.pkl", "rb") as f:
             cu4g11 = pickle.load(f)
-        with open(f"{BASE_DIR}/cu5g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/classification-model/cu5g11.pkl", "rb") as f:
             cu5g11 = pickle.load(f)
-        with open(f"{BASE_DIR}/cu6g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/classification-model/cu6g11.pkl", "rb") as f:
             cu6g11 = pickle.load(f)
-        with open(f"{BASE_DIR}/cu7g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/classification-model/cu7g11.pkl", "rb") as f:
             cu7g11 = pickle.load(f)
-        with open(f"{BASE_DIR}/cu8g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/classification-model/cu8g11.pkl", "rb") as f:
             cu8g11 = pickle.load(f)
-        with open(f"{BASE_DIR}/cu9g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/classification-model/cu9g11.pkl", "rb") as f:
             cu9g11 = pickle.load(f)
-        with open(f"{BASE_DIR}/cu10g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/classification-model/cu10g11.pkl", "rb") as f:
             cu10g11 = pickle.load(f)
-        with open(f"{BASE_DIR}/cu11g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/classification-model/cu11g11.pkl", "rb") as f:
             cu11g11 = pickle.load(f)
-        with open(f"{BASE_DIR}/cu12g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/classification-model/cu12g11.pkl", "rb") as f:
             cu12g11 = pickle.load(f)
-        with open(f"{BASE_DIR}/cu13g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/classification-model/cu13g11.pkl", "rb") as f:
             cu13g11 = pickle.load(f)
-        with open(f"{BASE_DIR}/cu14g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/classification-model/cu14g11.pkl", "rb") as f:
             cu14g11 = pickle.load(f)
         pred = class_model.predict(df)
 
@@ -191,33 +191,33 @@ def predict_pipeline(created_time, message_tags, msg, pl, pg):
         res = {"score": pred[0]}
         res["dataList"] = [pred1[0], pred2[0], pred3[0], pred4[0], pred5[0], pred6[0], pred7[0], pred8[0], pred9[0], pred10[0], pred11[0], pred12[0], pred13[0], pred14[0]]
       if type == 'ranking':
-        with open(f"{BASE_DIR}/cku1g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/ranking-model/cku1g11.pkl", "rb") as f:
            cku1g11 = pickle.load(f)
-        with open(f"{BASE_DIR}cku2g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/ranking-model/cku2g11.pkl", "rb") as f:
            cku2g11 = pickle.load(f)
-        with open(f"{BASE_DIR}cku3g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/ranking-model/cku3g11.pkl", "rb") as f:
            cku3g11 = pickle.load(f)
-        with open(f"{BASE_DIR}cku4g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/ranking-model/cku4g11.pkl", "rb") as f:
            cku4g11 = pickle.load(f)
-        with open(f"{BASE_DIR}cku5g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/ranking-model/cku5g11.pkl", "rb") as f:
            cku5g11 = pickle.load(f)
-        with open(f"{BASE_DIR}cku6g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/ranking-model/cku6g11.pkl", "rb") as f:
            cku6g11 = pickle.load(f)
-        with open(f"{BASE_DIR}cku7g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/ranking-model/cku7g11.pkl", "rb") as f:
            cku7g11 = pickle.load(f)
-        with open(f"{BASE_DIR}cku8g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/ranking-model/cku8g11.pkl", "rb") as f:
            cku8g11 = pickle.load(f)
-        with open(f"{BASE_DIR}cku9g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/ranking-model/cku9g11.pkl", "rb") as f:
            cku9g11 = pickle.load(f)
-        with open(f"{BASE_DIR}cku10g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/ranking-model/cku10g11.pkl", "rb") as f:
            cku10g11 = pickle.load(f)
-        with open(f"{BASE_DIR}cku11g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/ranking-model/cku11g11.pkl", "rb") as f:
            cku11g11 = pickle.load(f)
-        with open(f"{BASE_DIR}cku12g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/ranking-model/cku12g11.pkl", "rb") as f:
            cku12g11 = pickle.load(f)
-        with open(f"{BASE_DIR}cku13g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/ranking-model/cku13g11.pkl", "rb") as f:
            cku13g11 = pickle.load(f)
-        with open(f"{BASE_DIR}cku14g11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/ranking-model/cku14g11.pkl", "rb") as f:
            cku14g11 = pickle.load(f)
         pred = ranking_model.predict(df)
 
@@ -239,33 +239,33 @@ def predict_pipeline(created_time, message_tags, msg, pl, pg):
         res = {"score": sum(pred[0])}
         res["dataList"] = [sum(pred1[0]), sum(pred2[0]), sum(pred3[0]), sum(pred4[0]), sum(pred5[0]), sum(pred6[0]), sum(pred7[0]), sum(pred8[0]), sum(pred9[0]), sum(pred10[0]), sum(pred11[0]), sum(pred12[0]), sum(pred13[0]), sum(pred14[0])]
       if type == 'regression':
-        with open(f"{BASE_DIR}/ru1.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/regression-model/ru1.pkl", "rb") as f:
            ru1 = pickle.load(f)
-        with open(f"{BASE_DIR}ru2.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/regression-model/ru2.pkl", "rb") as f:
            ru2 = pickle.load(f)
-        with open(f"{BASE_DIR}ru3.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/regression-model/ru3.pkl", "rb") as f:
            ru3 = pickle.load(f)
-        with open(f"{BASE_DIR}ru4.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/regression-model/ru4.pkl", "rb") as f:
            ru4 = pickle.load(f)
-        with open(f"{BASE_DIR}ru5.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/regression-model/ru5.pkl", "rb") as f:
            ru5 = pickle.load(f)
-        with open(f"{BASE_DIR}ru6.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/regression-model/ru6.pkl", "rb") as f:
            ru6 = pickle.load(f)
-        with open(f"{BASE_DIR}ru7.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/regression-model/ru7.pkl", "rb") as f:
            ru7 = pickle.load(f)
-        with open(f"{BASE_DIR}ru8.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/regression-model/ru8.pkl", "rb") as f:
            ru8 = pickle.load(f)
-        with open(f"{BASE_DIR}ru9.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/regression-model/ru9.pkl", "rb") as f:
            ru9 = pickle.load(f)
-        with open(f"{BASE_DIR}ru10.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/regression-model/ru10.pkl", "rb") as f:
            ru10 = pickle.load(f)
-        with open(f"{BASE_DIR}ru11.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/regression-model/ru11.pkl", "rb") as f:
            ru11 = pickle.load(f)
-        with open(f"{BASE_DIR}ru12.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/regression-model/ru12.pkl", "rb") as f:
            ru12 = pickle.load(f)
-        with open(f"{BASE_DIR}ru13.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/regression-model/ru13.pkl", "rb") as f:
            ru13 = pickle.load(f)
-        with open(f"{BASE_DIR}ru14.pkl", "rb") as f:
+        with open(f"{BASE_DIR}/regression-model/ru14.pkl", "rb") as f:
            ru14 = pickle.load(f)
         pred = regress_model.predict(df)
         res = {"score": (2**pred[0])-1 }
