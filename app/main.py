@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from app.model.model import predict_pipeline
 from fastapi.middleware.cors import CORSMiddleware
+import uvicorn
 app = FastAPI()
 
 class User(BaseModel):
@@ -36,3 +37,6 @@ async def predict(spp: SPP):
     result = predict_pipeline(spp.created_time, spp.message_tags, spp.msg, spp.pl, spp.pg, spp.type)
     return str(result)
 
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=443, ssl_keyfile="/app/app/private_key.key", ssl_certfile="/app/app/certificate.crt")
