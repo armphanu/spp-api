@@ -8,4 +8,4 @@ RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 EXPOSE 443
 COPY ./app /app/app
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "443", "--ssl-keyfile", "/app/app/private_key.key", "--ssl-certfile", "/app/app/certificate.crt"]
+# CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "443", "--ssl-keyfile", "/app/app/private_key.key", "--ssl-certfile", "/app/app/certificate.crt"]
